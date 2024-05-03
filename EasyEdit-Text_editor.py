@@ -36,6 +36,12 @@ def open_file():
     Editor.insert(tk.END, text)
     window.title(f'Entitled – {filepath}')
 
+menubar = Menu(window)
+filemenu = Menu(menubar, tearoff=0)
+filemenu.add_command(label="Save", command=save)
+filemenu.add_command(label="Open", command=open_file)
+menubar.add_cascade(label="File", menu=filemenu)
+window.config(menu=menubar)
 
 
 window.mainloop()
