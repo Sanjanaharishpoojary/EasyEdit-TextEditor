@@ -1,6 +1,6 @@
 from tkinter import *
 import tkinter as tk
-from tkinter.filedialog import asksaveasfilename
+from tkinter.filedialog import asksaveasfilename,askopenfilename
 
 window = Tk()
 window.geometry('500x500')
@@ -26,7 +26,15 @@ def save():
         output_file.write(text)
     window.title(f'Entitled – {filepath}')
 
-
+def open_file():
+    filepath = askopenfilename(filetypes=[('Text Files', '*.txt'), ('All Files', '*.*')])
+    if not filepath:
+        return
+    with open(filepath, 'r') as input_file:
+        text = input_file.read()
+    Editor.delete(1.0, tk.END)  
+    Editor.insert(tk.END, text)
+    window.title(f'Entitled – {filepath}')
 
 
 
